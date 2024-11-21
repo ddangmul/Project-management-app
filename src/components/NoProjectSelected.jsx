@@ -1,7 +1,7 @@
 import noProjectImage from "../assets/no-projects.png";
 import Button from "./Button";
 
-export default function NoProjectSelected() {
+export default function NoProjectSelected({ onStartAddProject }) {
   return (
     <div className="mt-24 text-center w-2/3">
       <img
@@ -16,7 +16,7 @@ export default function NoProjectSelected() {
         프로젝트를 선택하거나 새 프로젝트를 생성하세요.
       </p>
       <p className="mt-8">
-        <Button>새 프로젝트 생성</Button>
+        <Button onClick={onStartAddProject}>새 프로젝트 생성</Button>
       </p>
     </div>
   );
