@@ -12,6 +12,13 @@ export default function NewProject({ onAdd }) {
     const enterdDueDate = dueDate.current.value;
 
     // validation ...
+    if (
+      enteredTitle.trim() === "" ||
+      enterdDescription.trim() === "" ||
+      enterdDueDate.trim() === ""
+    ) {
+      // show the error modal
+    }
 
     onAdd({
       title: enteredTitle,
