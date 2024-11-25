@@ -31,12 +31,13 @@ function App() {
       // 업데이트할 객체
       return {
         ...prevState,
+        selectedProjectId: undefined, // save 시 입력창 사라지게 하는 용도 (임시)
         projects: [...prevState.projects, newProject],
       };
     });
   }
 
-  console.log(projectState);
+  // console.log(projectState);
   let content;
 
   if (projectState.selectedProjectId === null) {
@@ -47,7 +48,10 @@ function App() {
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <ProjectsSidebar onStartAddProject={handleStartAddProject} />
+      <ProjectsSidebar
+        onStartAddProject={handleStartAddProject}
+        projects={projectState.projects}
+      />
       {content}
     </main>
   );
