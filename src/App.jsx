@@ -37,11 +37,20 @@ function App() {
     });
   }
 
+  function handleCancle() {
+    setProjectState((prevState) => {
+      return {
+        ...prevState, // 기존 projects 추가
+        selectedProjectId: undefined, // cancle 시 입력창 사라지게 하기
+      };
+    });
+  }
+
   // console.log(projectState);
   let content;
 
   if (projectState.selectedProjectId === null) {
-    content = <NewProject onAdd={handleAddProject} />;
+    content = <NewProject onAdd={handleAddProject} onCancle={handleCancle} />;
   } else if (projectState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
