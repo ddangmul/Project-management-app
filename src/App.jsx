@@ -9,6 +9,7 @@ function App() {
     projects: [],
   });
 
+  // StartAdd~ : 프로젝트 상태 중 "selectedProjectId" 업데이트
   function handleStartAddProject() {
     setProjectState((prevState) => {
       return {
@@ -18,10 +19,28 @@ function App() {
     });
   }
 
+  // Add~ : 프로젝트 상태 중 "projects" 업데이트
+  function handleAddProject(projectData) {
+    setProjectState((prevState) => {
+      // projectData에 id 속성 추가설정
+      const newProject = {
+        ...projectData,
+        id: Math.random(), // ***
+      };
+
+      // 업데이트할 객체
+      return {
+        ...prevState,
+        projects: [...prevState.projects, newProject],
+      };
+    });
+  }
+
+  console.log(projectState);
   let content;
 
   if (projectState.selectedProjectId === null) {
-    content = <NewProject />;
+    content = <NewProject onAdd={handleAddProject} />;
   } else if (projectState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
