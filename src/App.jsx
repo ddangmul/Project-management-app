@@ -27,7 +27,16 @@ function App() {
     });
   }
 
-  function handleDeleteTask() {}
+  function handleDeleteTask(id) {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter(
+          (task) => task.id !== id
+        ),
+      };
+    });
+  }
 
   // StartAdd~ : 프로젝트 상태 중 "selectedProjectId" 업데이트
   function handleStartAddProject() {
