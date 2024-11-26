@@ -8,7 +8,26 @@ function App() {
   const [projectState, setProjectState] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  function handleAddTask(enterdTask) {
+    setProjectState((prevState) => {
+      const taskId = Math.random();
+      const newTask = {
+        name: enterdTask,
+        projectId: prevState.selectedProjectId,
+        id: taskId,
+      };
+
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks],
+      };
+    });
+  }
+
+  function handleDeleteTask() {}
 
   // StartAdd~ : 프로젝트 상태 중 "selectedProjectId" 업데이트
   function handleStartAddProject() {
@@ -73,7 +92,13 @@ function App() {
   ); //find 함수 : 연산결과 true인 project를 반환
 
   let content = (
-    <SelectedProject project={selectedProject} onDelete={handleDeleteProject} />
+    <SelectedProject
+      project={selectedProject}
+      onDelete={handleDeleteProject}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+      tasks={projectState.tasks}
+    />
   );
 
   if (projectState.selectedProjectId === null) {
